@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Noticias</title>
+  <script>
+     window.onload = function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var paramId = urlParams.get('id');
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost/api/news/"+paramId);
+        xhr.send();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+              var data = JSON.parse(xhr.responseText);
+              if(data.title) {
+                document.getElementById("title_dynamic").innerHTML = data.title;
+                document.getElementById("date_dynamic").innerHTML = data.date;
+                document.getElementById("body_dynamic").innerHTML = data.body;
+              }
+          }
+        }
+     };
+  </script>
+  <style>
+    footer {
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+      background-color: #45a1ff;
+      color: #fff;
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+
+    .container {
+      margin: 0% 30%
+    }
+    p {
+      padding: 0% 3%;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <center><h1>Noticias</h1></center>
+    <br>
+    <div class="container">
+      <h2 id="title_dynamic"></h2>
+      <h4 id="date_dynamic"></h4>
+      <p id="body_dynamic"></p>
+    </div>
+  </div>
+  <br>
+  <br>
+  <footer>
+      <p>© 2019 ANDMAGOM</p>
+  </footer>
+</body>
+</html>
