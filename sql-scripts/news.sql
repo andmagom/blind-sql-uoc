@@ -1,7 +1,7 @@
 CREATE TABLE UOC.News (
 	Id varchar(100) NOT NULL,
 	Title varchar(100) NULL,
-	Body varchar(100) NULL,
+	Body varchar(2000) NULL,
 	`Datetime` DATETIME NULL,
 	CONSTRAINT News_PK PRIMARY KEY (Id)
 )

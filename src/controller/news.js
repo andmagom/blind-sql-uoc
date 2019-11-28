@@ -4,9 +4,9 @@ const knex = require('knex')(db_connection);
 const getById = async (id, securityLevel) =>  {
   let promise = null;
   if(securityLevel == 0) {
-    promise = knex.raw(`select * from News where id = ${id}`);
+    promise = knex.raw(`select Title, Body, Datetime from News where id = ${id}`);
   } else if (securityLevel == 1) {
-    promise = knex.raw('select * from News where id = ?', id)
+    promise = knex.raw('select Title, Body, Datetime from News where id = ?', id)
   }
     const resultBD = await promise;
     let result = {};
